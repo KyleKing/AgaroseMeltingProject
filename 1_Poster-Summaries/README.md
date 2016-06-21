@@ -8,5 +8,4 @@ See:
 
 Also:
 
-- **Abstract UMDJHU.docx** - the most recent abstract that I've written
 - **MMLLogo.png** - The logo I use for posters and such
