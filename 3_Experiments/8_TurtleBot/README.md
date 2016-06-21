@@ -7,15 +7,15 @@ I had too much fun working on the Raspberry Pi and building this device that I g
 This version was the first demonstration and was kluged together. The device worked surprisingly well, but needed constant oversight.
 
 <p align="center">
-  <img width="450" height=auto src="imgs/1_manual/overview.jpg">
+  <img width="100%" height=auto src="imgs/1_manual/overview.jpg">
 </p>
 <p align="center">
-  <img width="450" height=auto src="imgs/1_manual/side-view.jpg">
+  <img width="350" height=auto src="imgs/1_manual/side-view.jpg">
 </p>
 <p align="center">Original device setup</p>
 
 <p align="center">
-  <img width="450" height=auto src="imgs/1_manual/PMMA.jpg">
+  <img width="350" height=auto src="imgs/1_manual/PMMA.jpg">
 </p>
 <p align="center">The PMMA device and camera setup</p>
 
