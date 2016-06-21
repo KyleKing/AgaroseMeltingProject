@@ -1,8 +1,8 @@
 # Meltable Agarose Bead Bed Project
 
-The goal of this project was to demonstrate a bead bed (LMP Agarose beads) that can capture an analyte (via a sandwich immunoassay with silver enhancement) and using a change in temperature, be **melted for better optical detection**.
+The goal of this project was to demonstrate a bead bed (LMP Agarose beads) that can capture an analyte (via a sandwich immunoassay with silver enhancement) and using a change in temperature, be **melted for improved optical clarity and a lower detection limit**.
 
-In this folder you will find all the code, notes, and resources to help you finish this project. I learned a great deal from electronics and software to microfluidics that I would have never learned in my classes. Feel free to email me any questions [kmking72@gmail.com](mailto:kmking72@gmail.com) or create a new issue at the [private Github repository](https://github.com/KyleKing/AgaroseMeltingProject/issues/new) - note: see login details below for how to access.
+In this folder you will find all the code, notes, and resources to help you finish this project. I learned a great deal from electronics and software to microfluidics that I would have never learned in my classes. Feel free to email me any questions [kmking72@gmail.com](mailto:kmking72@gmail.com) or [create a new issue at the private Github repository](https://github.com/KyleKing/AgaroseMeltingProject/issues/new) - note: see login details below for how to access.
 
 I've organized and condensed my notes as concisely as possible. I would start by looking through the posters `1_Posters` to get a general idea of the project.
 
