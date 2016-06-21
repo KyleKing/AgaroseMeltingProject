@@ -1,12 +1,12 @@
 # Melting Tests (Proof of Concept)
 
-Both of the melting tests showed that possibility of this approach to optical improvement.
+Both of the melting tests showed that possibility of this approach to optical improvement. All videos are hosted on [Dropbox](https://www.dropbox.com/sh/ke1u6qmqc53jnuz/AAD-haMxS_5xeuQjK45n7hJ0a?dl=0) and on the Mantis post under `3_Melting-Demonstration`.
 
 ## Bulk Demonstration
 
 The bulk beads were placed into large PDMS wells. The beads melted around 80°C, which is below the glass transition temperature of PMMA and COC. Even with one bead, the optical improvement is visible.
 
-Download the complete video: [MeltingLMPGel.mp4]()
+Download the complete video: `MeltingLMPGel.mp4`
 
 ## Miniature Beads
 
