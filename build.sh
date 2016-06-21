@@ -12,30 +12,27 @@ mkdir dist/
 # Definition:
 function foo ()
 {
-  	tput setaf 4; echo "Archiving $1"
-  	# zip -r $1 $f
+  	tput setaf 4; echo "Archiving $1 from $2"
+    tput setaf 8;
+  	zip -r $1 $2
   	tput setaf 6; echo "Finished archiving $1"
 		echo ""
     return 0
 }
 
-for d in */
-do
+for d in */; do
   if [ "$EXP" == "$d" ]; then
     cd $EXP
     for f in */ ; do
     	# Clever char removal trick: http://unix.stackexchange.com/a/144308
-    	foo "../dist/${EXP%?}-${f%?}.zip"
+    	foo "../dist/${EXP%?}-${f%?}.zip" $f
     done
     cd ..
-    echo ""
     tput setaf 5; echo "Left $EXP"
-    echo ""
-	elif [ "dist/" == "$d" ]
-	then
+	elif [ "dist/" == "$d" ]; then
 		tput setaf 5; echo "Ignoring dist directory"
   else
-  	foo "dist/${d%?}.zip"
+  	foo "dist/${d%?}.zip" $d
   fi
 done
 
