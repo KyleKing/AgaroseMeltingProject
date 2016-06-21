@@ -50,7 +50,13 @@ Generally, my process:
         * Go slowly and accurate or you make create spiderweb cracks around the inlet. Small ones are okay and can be covered with epoxy, but will limit the life of the device
         * Make sure the needle is straight in the chuck (you can test by manually spinning the drill)
         * A trick from Eric, while rotating the needle, drag it along a piece of sand paper to round off the tip of the needle
+        * With the dedicated microscope, align both the needle and port with the focal point
     + Once the needles are pressed, cover the connection with epoxy for better stability and attach your fluidic connections
+
+<p align="center">
+  <img width="450" height=auto src="imgs/protocol/needlepress.jpg">
+</p>
+<p align="center">Pressing needles while using the USB microscope (replaced in favor of the dedicated microscope once Dr. Eric Kendall fixed the mounting hardware</p>
 
 ## Evolution of the PMMA Devices
 

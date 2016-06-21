@@ -1,4 +1,4 @@
-# Turtlebot (dual heat stage) and Melter (single heat stage)
+# Turtlebot (dual heat stage)
 
 I had too much fun working on the Raspberry Pi and building this device that I got sidetracked from the actual project. At this point this device should be entirely self-contained and can be modified however you need to. There are three parts. first the CAD for the 3D printed parts (`see 6_CAD-Files`). Second, the electronics, which are described in more detail under the folder, `5_Electronic-Diagrams`. Third, the code, see `4_Software/MML-HeatStage` for instructions and additional information. This README will only cover the history of the device and some setup pictures for reference.
 
