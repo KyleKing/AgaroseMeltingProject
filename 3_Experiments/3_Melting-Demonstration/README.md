@@ -6,7 +6,7 @@ Both of the melting tests showed that possibility of this approach to optical im
 
 The bulk beads were placed into large PDMS wells. The beads melted around 80°C, which is below the glass transition temperature of PMMA and COC. Even with one bead, the optical improvement is visible.
 
-See the complete video: `MeltingLMPGel.mp4`
+Download the complete video: [MeltingLMPGel.mp4]()
 
 ## Miniature Beads
 
