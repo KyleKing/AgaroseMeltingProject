@@ -6,18 +6,21 @@ I did a pretty wide literature review and settled on two approaches. The first w
 
 <p align="center">
   <img width="450" height=auto src="1_Formaledhyde-Sensor/concdependence.jpg">
-  <figcaption style="text-align: center;">I demonstrated concentration dependence over an arbitrary range:</figcaption>
 </p>
+
+<p align="center">I demonstrated concentration dependence over an arbitrary range</p>
 
 <p align="center">
   <img width="450" height=auto src="1_Formaledhyde-Sensor/premelt.jpg">
-  <figcaption style="text-align: center;">Then I setup to do a melting demonstration. Before the melt thebeads were a light brown color:</figcaption>
 </p>
+
+<p align="center">Then I setup to do a melting demonstration. Before the melt the beads were a light brown color</p>
 
 <p align="center">
   <img width="450" height=auto src="1_Formaledhyde-Sensor/postmelt.jpg">
-  <figcaption style="text-align: center;">However, after melting the color became a burnt black. The heat haddriven the reaction to completion:</figcaption>
 </p>
+
+<p align="center">However, after melting the color became a burnt black. The heat had driven the reaction to completion</p>
 
 See the complete video: `formaldehydemeltvideo.m4v`
 
@@ -27,16 +30,12 @@ The agarose beads are incubated with sodium periodate, then a streptavidin-hydra
 
 <p align="center">
   <img width="100%" height=auto src="2_Hydrazide-Reaction/Reaction1.png">
-  <!-- <figcaption style="text-align: center;">Reaction 1</figcaption> -->
 </p>
-
 <p align="center">Reaction 1</p>
 
 <p align="center">
   <img width="100%" height=auto src="2_Hydrazide-Reaction/Reaction2.png">
-  <!-- <figcaption style="text-align: center;">Reaction 2</figcaption> -->
 </p>
-
 <p align="center">Reaction 2</p>
 
 For more specifics, refer to the entire protocol: `2_Hydrazide-Reaction/ElicellProtocol.pdf` or the two related papers: [EliCell assay for the detection of released cytokines from eosinophils](http://www.sciencedirect.com/science/article/pii/S0022175903000760) and [EliCell: a gel-phase dual antibody capture and detection assay to measure cytokine release from eosinophils](http://www.sciencedirect.com/science/article/pii/S0022175900002647)
@@ -47,25 +46,16 @@ I demonstrated the Hydrazide-activation assay using a direct assay (the exposed 
 
 <p align="center">
   <img width="450" height=auto src="3_Bulk-Study/demo.png">
-  <!-- <figcaption style="text-align: center;">Analysis</figcaption> -->
 </p>
-
 <p align="center">Analysis</p>
-
-The beads used were from agarose poured into the plate below and then scraped off:
 
 <p align="center">
   <img width="450" height=auto src="3_Bulk-Study/beadgenerator.jpg">
-  <!-- <figcaption style="text-align: center;">Macro-Scale Bead Plate</figcaption> -->
 </p>
 
-<p align="center">Macro-Scale Bead Plate</p>
-
-The beads were then placed into this PDMS plate bonded to a glass backing for analysis:
+<p align="center">The beads used were from agarose poured into the plate below and then scraped off (Macro-Scale Bead Plate)</p>
 
 <p align="center">
   <img width="450" height=auto src="3_Bulk-Study/meltingplate.jpg">
-  <!-- <figcaption style="text-align: center;">PDMS Wells</figcaption> -->
 </p>
-
-<p align="center">PDMS Wells</p>
+<p align="center">PDMS Wells - the beads were then placed into this PDMS plate bonded to a glass backing for analysis</p>
