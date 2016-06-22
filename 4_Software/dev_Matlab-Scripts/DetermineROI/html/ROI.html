@@ -1,0 +1,665 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ROI</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-06-22"><meta name="DC.source" content="ROI.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% % Demo of ROI from Matlab: http://www.mathworks.com/help/images/apply-filter-to-region-of-interest-in-an-image.html</span>
+<span class="comment">% clc, clear all, close all % Boilerplate</span>
+
+<span class="comment">% img = imread('pout.png');</span>
+<span class="comment">% % img = img(:,:,1);</span>
+<span class="comment">% img = rgb2gray(img);</span>
+
+<span class="comment">% figure</span>
+<span class="comment">% h_img = imshow(img);</span>
+<span class="comment">% e = imellipse(gca,[55 10 120 120]);</span>
+
+<span class="comment">% mask = createMask(e,h_img);</span>
+<span class="comment">% h = fspecial('unsharp');</span>
+<span class="comment">% I2 = roifilt2(h, img, mask);</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% Attempt at ROI reading</span>
+clc, clear <span class="string">all</span>, close <span class="string">all</span> <span class="comment">% Boilerplate</span>
+
+<span class="comment">% Add a directory for the images</span>
+<span class="keyword">if</span> exist(<span class="string">'imgs_out/'</span>) == 7
+	disp(<span class="string">'imgs_out/ dir exists, deleting to start fresh'</span>)
+	rmdir(<span class="string">'imgs_out'</span>, <span class="string">'s'</span>)
+<span class="keyword">end</span>
+mkdir <span class="string">'imgs_out'</span>
+
+<span class="comment">% img = imread('pout.png');</span>
+img = imread(<span class="string">'meltdemo.png'</span>);
+
+<span class="comment">% Apply color filter?</span>
+<span class="comment">% PreIMG = rgb2gray(PreIMG);</span>
+<span class="comment">% Or filter by color</span>
+PreIMG = img(:,:,1);
+
+figure
+I = imshow(PreIMG);
+
+<span class="comment">% %%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% % Single, custom-defined ROI</span>
+<span class="comment">% h = imrect(gca, [100 100 100 100]);</span>
+<span class="comment">% % pos = getPosition(h);</span>
+
+<span class="comment">% % Wait for user to double click, then report position</span>
+<span class="comment">% % [x y width height],</span>
+<span class="comment">% position = wait(h);</span>
+<span class="comment">% pos = getPosition(h);</span>
+
+<span class="comment">% % Scrape positions from pos array</span>
+<span class="comment">% x1 = round(pos(1))</span>
+<span class="comment">% x2 = round(pos(1)+pos(3))</span>
+<span class="comment">% y1 = round(pos(2))</span>
+<span class="comment">% y2 = round(pos(2)+pos(4))</span>
+<span class="comment">% % Plot corners of rectangle:</span>
+<span class="comment">% viscircles([x1, y1], (5));</span>
+<span class="comment">% viscircles([x2, y2], (5));</span>
+
+<span class="comment">% % Show cropped portion</span>
+<span class="comment">% figure</span>
+<span class="comment">% cropped = PreIMG(y1:y2, x1:x2);</span>
+<span class="comment">% imshow(cropped)</span>
+
+<span class="comment">% % Report ROI</span>
+<span class="comment">% ROIout = mean2(cropped)</span>
+<span class="comment">% %%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% Programmatcily define ROI's within a circular outer well</span>
+
+<span class="comment">% % For calibrating</span>
+<span class="comment">% d = imdistline;</span>
+
+<span class="comment">% Find target areas to investigate</span>
+<span class="comment">% Identify Circles in Image</span>
+<span class="comment">% MATLAB Guide: http://www.mathworks.com/help/images/examples/detect-and-measure-circular-objects-in-an-image.html</span>
+<span class="comment">% Init Variables</span>
+PlotCenters = []; PlotRadii = []; Search = []; Loops = 1;
+CountCircles = zeros(Loops, 1);
+MinR = 70;
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% Test different radius dimensions</span>
+<span class="comment">% for ii = 1:Loops</span>
+	<span class="comment">% % Find Circles</span>
+	<span class="comment">% MaxR = floor(MinR*3);</span>
+	MaxR = MinR + 20;
+	[Centers, Radii] = imfindcircles(PreIMG,[MinR MaxR],<span class="string">'ObjectPolarity'</span>,<span class="string">'dark'</span>, <span class="string">'Sensitivity'</span>,0.9, <span class="string">'Method'</span>,<span class="string">'twostage'</span>);
+	<span class="comment">% % Store Data</span>
+	<span class="comment">% CountCircles(ii) = length(Radii);</span>
+	PlotCenters = [PlotCenters; Centers];
+	PlotRadii = [PlotRadii; Radii];
+	<span class="comment">% % Update Counters</span>
+	<span class="comment">% Search = [Search; MinR, MaxR];</span>
+	<span class="comment">% MinR = MaxR+1;</span>
+	<span class="comment">% Radii = [];</span>
+<span class="comment">% end</span>
+<span class="comment">% % Output some cool data</span>
+<span class="comment">% Headers = {'MinRadius';'MaxRadius';'NumberOfCircles'};</span>
+<span class="comment">% T = table(Search(:,1), Search(:,2), CountCircles, 'VariableNames',Headers)</span>
+<span class="comment">% % disp(sprintf('Analyzing %s and found %d circles in this distribution:', PhotoName, sum(CountCircles)))</span>
+<span class="comment">% % Show circles</span>
+h = viscircles(PlotCenters, PlotRadii,<span class="string">'Color'</span>,<span class="string">'b'</span>);
+
+<span class="comment">% %%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% %Faster Iterations</span>
+<span class="comment">% img = imread('real.png');</span>
+
+
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% Define ROI and plot corners of ROI</span>
+NumRadii = length(PlotRadii);
+<span class="keyword">for</span> ii = 1:NumRadii
+	HalfWidth = PlotRadii(ii)*sin(45);
+	HalfWidth = HalfWidth*6/10;
+	<span class="comment">% Plot edges of new rectangle</span>
+	x1(ii) = round(PlotCenters(ii, 1) - HalfWidth);
+	x2(ii) = round(PlotCenters(ii, 1) + HalfWidth);
+	y1(ii) = round(PlotCenters(ii, 2) - HalfWidth);
+	y2(ii) = round(PlotCenters(ii, 2) + HalfWidth);
+	<span class="comment">% Plot corners of rectangle:</span>
+	viscircles([x1(ii), y1(ii)], 5,<span class="string">'Color'</span>,<span class="string">'g'</span>);
+	viscircles([x2(ii), y2(ii)], 10,<span class="string">'Color'</span>,<span class="string">'g'</span>);
+
+	<span class="comment">% % Need computer vision toolbox</span>
+	<span class="comment">% % J = insertShape(PreIMG, 'rectangle', [x1(ii), y1(ii), HalfWidth, HalfWidth], 'LineWidth', 5);</span>
+	<span class="comment">% % imshow(J);</span>
+<span class="keyword">end</span>
+
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% for ColorFilter = 1:3</span>
+ColorFilter = 1
+	img = imread(<span class="string">'meltdemo.png'</span>);
+	img = img(:,:,ColorFilter);
+	<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+	<span class="comment">% make subplot per ROI and analyze</span>
+	figure
+	<span class="keyword">for</span> ii = 1:NumRadii
+		<span class="comment">% Show cropped portion</span>
+		cropped = img(y1(ii):y2(ii), x1(ii):x2(ii));
+
+		<span class="comment">% Welp this is a mess....</span>
+		<span class="comment">% Should sort instead in x and y coordinates and then determine array setup</span>
+		<span class="comment">% Also the order changes if the circles are not exactly 6...</span>
+		<span class="keyword">if</span> ii == 1 | ii == 6
+			position = ii;
+		<span class="keyword">elseif</span> ii == 2
+			position = 4;
+		<span class="keyword">elseif</span> ii == 3
+			position = 2;
+		<span class="keyword">elseif</span> ii == 4
+			position = 5;
+		<span class="keyword">elseif</span> ii == 5
+			position = 3;
+		<span class="keyword">end</span>
+		<span class="comment">% Welp...end of the mess</span>
+
+		<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+		<span class="comment">% First record baseline value</span>
+		BaseLineROI(ColorFilter, position) = mean2(cropped);
+
+		<span class="comment">% Hide bubbles with outside of STD</span>
+		MeanTrans = mean2(cropped);
+		STDTrans = std2(cropped);
+		LowerLimit = MeanTrans*0.7;
+		UpperLimit = MeanTrans*1.2;
+		<span class="comment">% cropped(cropped&lt;LowerLimit) = nan;</span>
+		<span class="comment">% Plot before changing values to nan</span>
+		subplot(2, 3, position)
+		imshow(cropped)
+		<span class="keyword">if</span> (position &gt; 3)
+			cropped(cropped &lt; LowerLimit) = 0;
+			<span class="comment">% Output an image to show areas that were analyzed for ROI</span>
+			Analysis = cropped;
+			Analysis(~Analysis) = 255;
+			imwrite(Analysis, sprintf(<span class="string">'imgs_out/Analysis%d.png'</span>, position));
+			<span class="comment">% Report ROI</span>
+			ROIout(ColorFilter, position) = nanmean2(cropped, 0);
+		<span class="keyword">else</span>
+			cropped(cropped &gt; UpperLimit) = 255;
+			<span class="comment">% Output an image to show areas that were analyzed for ROI</span>
+			Analysis = cropped;
+			imwrite(Analysis, sprintf(<span class="string">'imgs_out/Analysis%d.png'</span>, position));
+			<span class="comment">% Report ROI</span>
+			ROIout(ColorFilter, position) = nanmean2(cropped, 255);
+		<span class="keyword">end</span>
+	<span class="keyword">end</span>
+
+	figure
+	<span class="keyword">for</span> position = 1:6
+		SavedImage = imread(sprintf(<span class="string">'imgs_out/Analysis%d.png'</span>, position ));
+		subplot(2, 3, position)
+		imshow(SavedImage)
+	<span class="keyword">end</span>
+
+	figure
+	bar(BaseLineROI(ColorFilter, :), <span class="string">'FaceColor'</span>, [100, 200, 100]./256) <span class="comment">% green</span>
+	title(sprintf(<span class="string">'Transmission Baseline Values prior to Bubble Removal in %dst spectra'</span>, ColorFilter))
+	xlabel(<span class="string">'Position (1-3 top) (4-6 bottom)'</span>)
+	ylabel(<span class="string">'Transmission (256 is 100% transmission)'</span>)
+
+	<span class="comment">% Create a stacked bar chart using the bar function</span>
+	figure
+	<span class="comment">% ROIDifference = BaseLineROI(ColorFilter, 4:6) - ROIout(ColorFilter, 4:6);</span>
+	<span class="comment">% ROIDifference = [ROIout(ColorFilter, 1:3) - BaseLineROI(ColorFilter, 1:3), ROIDifference]</span>
+
+	ROIDifference = ROIout(ColorFilter, :) - BaseLineROI(ColorFilter, :)
+	bar( [ROIDifference', ROIout(ColorFilter, :)'], <span class="string">'stack'</span>)
+	title(sprintf(<span class="string">'Comparison of Bubble Removal in %dst spectra'</span>, ColorFilter))
+	xlabel(<span class="string">'Position (1-3 top) (4-6 bottom)'</span>)
+	ylabel(<span class="string">'Transmission (256 is 100% transmission)'</span>)
+
+	<span class="comment">% % Adjust the axis limits</span>
+	<span class="comment">% axis([0 13 0 100000])</span>
+	<span class="comment">% set(gca, 'XTick', 1:12)</span>
+
+	<span class="comment">% % Add title and axis labels</span>
+	<span class="comment">% title('Childhood diseases by month')</span>
+	<span class="comment">% xlabel('Month')</span>
+	<span class="comment">% ylabel('Cases (in thousands)')</span>
+
+	<span class="comment">% Add a legend</span>
+	legend(<span class="string">'Adjustment'</span>, <span class="string">'ROI'</span>)
+
+	figure
+	bar( ROIDifference, <span class="string">'FaceColor'</span>, [100, 200, 100]./256) <span class="comment">% green</span>
+	title(sprintf(<span class="string">'ROIDifference in %dst spectra'</span>, ColorFilter))
+	xlabel(<span class="string">'All bottom row (post-melt)'</span>)
+	ylabel(<span class="string">'Transmission (256 is 100% transmission)'</span>)
+
+	figure
+	bar(ROIout(ColorFilter, :), <span class="string">'FaceColor'</span>, [100, 200, 100]./256) <span class="comment">% green</span>
+	title(sprintf(<span class="string">'6 Transmission Values found in the %dst spectra'</span>, ColorFilter))
+	xlabel(<span class="string">'Position (1-3 top) (4-6 bottom)'</span>)
+	ylabel(<span class="string">'Transmission (256 is 100% transmission)'</span>)
+<span class="comment">% end</span>
+
+<span class="comment">% %%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% % Calculate deviation across color filters</span>
+<span class="comment">% for jj = 1:NumRadii</span>
+<span class="comment">% 	BarData(jj) = mean( ROIout(:, jj) );</span>
+<span class="comment">% 	Deviation(jj) = std( ROIout(:, jj) );</span>
+<span class="comment">% end</span>
+
+<span class="comment">% % Plot Variation on top of mean</span>
+<span class="comment">% figure, hold all</span>
+<span class="comment">% bar(BarData, 'FaceColor', [173, 216, 230]./256) % light blue</span>
+<span class="comment">% errorbar( BarData, Deviation, 'kx' )</span>
+<span class="comment">% title('Comparison of transmission across spectra')</span>
+<span class="comment">% xlabel('Position (1-3 top) (4-6 bottom)')</span>
+<span class="comment">% ylabel('Mean Transmission (256 is 100% transmission)')</span>
+
+<span class="comment">% % Plot Variation only</span>
+<span class="comment">% figure, hold all</span>
+<span class="comment">% bar(Deviation, 'FaceColor', [0, 120, 256]./256) % dark blue</span>
+<span class="comment">% title('Breakout of Standard Deviation between Color Filtes')</span>
+<span class="comment">% xlabel('Position (1-3 top) (4-6 bottom)')</span>
+<span class="comment">% ylabel('Transmission (256 is 100% transmission)')</span>
+
+
+<span class="comment">% % Plot Optical Improvement</span>
+<span class="comment">% NumTestWells = round(length(PlotRadii)/2);</span>
+<span class="comment">% OpticalImprovement = zeros(NumTestWells, 1);</span>
+<span class="comment">% for kk = 1:NumTestWells</span>
+<span class="comment">% 	OpticalImprovement(kk) = ( BarData(kk+3) - BarData(kk) ) / BarData(kk+3);</span>
+<span class="comment">% end</span>
+<span class="comment">% figure, hold all</span>
+<span class="comment">% AVGOpticalImprovement = mean(OpticalImprovement);</span>
+<span class="comment">% xValues = linspace(0.5, (length(OpticalImprovement)+0.5), 2);</span>
+<span class="comment">% yValues = linspace(AVGOpticalImprovement, AVGOpticalImprovement, 2);</span>
+<span class="comment">% plot(xValues, yValues, 'k--')</span>
+<span class="comment">% bar(OpticalImprovement, 'FaceColor', [100, 200, 100]./256) % green</span>
+<span class="comment">% % Add labels and tick marks</span>
+<span class="comment">% MyLabels = {'Neg: Non-Functionalized', 'Neg: Functionalized', 'Positive Control'};</span>
+<span class="comment">% ax = gca;</span>
+<span class="comment">% ax.XTick = 1:(length(MyLabels));</span>
+<span class="comment">% ax.XTickLabel = MyLabels;</span>
+<span class="comment">% ax.XTickLabelRotation = 35;</span>
+<span class="comment">% title('Percent Optical Improvement')</span>
+<span class="comment">% xlabel('Control Group')</span>
+<span class="comment">% ylabel('% Change in Optical Improvement')</span>
+<span class="comment">% ylim([0,1])</span>
+
+<span class="comment">% % Add annotation of average:</span>
+<span class="comment">% % http://www.mathworks.com/help/matlab/ref/annotation.html</span>
+<span class="comment">% % [ x y w h], of figure mapped from [0,0] to [1,1]</span>
+<span class="comment">% % Note: this includes the margins around the graph</span>
+<span class="comment">% dim = [.15 .6 .3 .3];</span>
+<span class="comment">% str = sprintf('AVG: %.3g%%', AVGOpticalImprovement*100);</span>
+<span class="comment">% annotation('textbox',dim,'String',str,'FitBoxToText','on');</span>
+</pre><pre class="codeoutput">
+ColorFilter =
+
+     1
+
+
+ROIDifference =
+
+  -13.8819  -25.0312   -9.5702   31.0996    2.8696    7.7292
+
+</pre><img vspace="5" hspace="5" src="ROI_01.png" style="width:631px;height:332px;" alt=""> <img vspace="5" hspace="5" src="ROI_02.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="ROI_03.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="ROI_04.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="ROI_05.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="ROI_06.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="ROI_07.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Demo of ROI from Matlab: http://www.mathworks.com/help/images/apply-filter-to-region-of-interest-in-an-image.html
+% clc, clear all, close all % Boilerplate
+
+% img = imread('pout.png');
+% % img = img(:,:,1);
+% img = rgb2gray(img);
+
+% figure
+% h_img = imshow(img);
+% e = imellipse(gca,[55 10 120 120]);
+
+% mask = createMask(e,h_img);
+% h = fspecial('unsharp');
+% I2 = roifilt2(h, img, mask);
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Attempt at ROI reading
+clc, clear all, close all % Boilerplate
+
+% Add a directory for the images
+if exist('imgs_out/') == 7
+	disp('imgs_out/ dir exists, deleting to start fresh')
+	rmdir('imgs_out', 's')
+end
+mkdir 'imgs_out'
+
+% img = imread('pout.png');
+img = imread('meltdemo.png');
+
+% Apply color filter?
+% PreIMG = rgb2gray(PreIMG);
+% Or filter by color
+PreIMG = img(:,:,1);
+
+figure
+I = imshow(PreIMG);
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Single, custom-defined ROI
+% h = imrect(gca, [100 100 100 100]);
+% % pos = getPosition(h);
+
+% % Wait for user to double click, then report position
+% % [x y width height],
+% position = wait(h);
+% pos = getPosition(h);
+
+% % Scrape positions from pos array
+% x1 = round(pos(1))
+% x2 = round(pos(1)+pos(3))
+% y1 = round(pos(2))
+% y2 = round(pos(2)+pos(4))
+% % Plot corners of rectangle:
+% viscircles([x1, y1], (5));
+% viscircles([x2, y2], (5));
+
+% % Show cropped portion
+% figure
+% cropped = PreIMG(y1:y2, x1:x2);
+% imshow(cropped)
+
+% % Report ROI
+% ROIout = mean2(cropped)
+% %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programmatcily define ROI's within a circular outer well
+
+% % For calibrating
+% d = imdistline;
+
+% Find target areas to investigate
+% Identify Circles in Image
+% MATLAB Guide: http://www.mathworks.com/help/images/examples/detect-and-measure-circular-objects-in-an-image.html
+% Init Variables
+PlotCenters = []; PlotRadii = []; Search = []; Loops = 1;
+CountCircles = zeros(Loops, 1);
+MinR = 70;
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Test different radius dimensions
+% for ii = 1:Loops
+	% % Find Circles
+	% MaxR = floor(MinR*3);
+	MaxR = MinR + 20;
+	[Centers, Radii] = imfindcircles(PreIMG,[MinR MaxR],'ObjectPolarity','dark', 'Sensitivity',0.9, 'Method','twostage');
+	% % Store Data
+	% CountCircles(ii) = length(Radii);
+	PlotCenters = [PlotCenters; Centers];
+	PlotRadii = [PlotRadii; Radii];
+	% % Update Counters
+	% Search = [Search; MinR, MaxR];
+	% MinR = MaxR+1;
+	% Radii = [];
+% end
+% % Output some cool data
+% Headers = {'MinRadius';'MaxRadius';'NumberOfCircles'};
+% T = table(Search(:,1), Search(:,2), CountCircles, 'VariableNames',Headers)
+% % disp(sprintf('Analyzing %s and found %d circles in this distribution:', PhotoName, sum(CountCircles)))
+% % Show circles
+h = viscircles(PlotCenters, PlotRadii,'Color','b');
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%
+% %Faster Iterations
+% img = imread('real.png');
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define ROI and plot corners of ROI
+NumRadii = length(PlotRadii);
+for ii = 1:NumRadii
+	HalfWidth = PlotRadii(ii)*sin(45);
+	HalfWidth = HalfWidth*6/10;
+	% Plot edges of new rectangle
+	x1(ii) = round(PlotCenters(ii, 1) - HalfWidth);
+	x2(ii) = round(PlotCenters(ii, 1) + HalfWidth);
+	y1(ii) = round(PlotCenters(ii, 2) - HalfWidth);
+	y2(ii) = round(PlotCenters(ii, 2) + HalfWidth);
+	% Plot corners of rectangle:
+	viscircles([x1(ii), y1(ii)], 5,'Color','g');
+	viscircles([x2(ii), y2(ii)], 10,'Color','g');
+
+	% % Need computer vision toolbox
+	% % J = insertShape(PreIMG, 'rectangle', [x1(ii), y1(ii), HalfWidth, HalfWidth], 'LineWidth', 5);
+	% % imshow(J);
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% for ColorFilter = 1:3
+ColorFilter = 1
+	img = imread('meltdemo.png');
+	img = img(:,:,ColorFilter);
+	%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% make subplot per ROI and analyze
+	figure
+	for ii = 1:NumRadii
+		% Show cropped portion
+		cropped = img(y1(ii):y2(ii), x1(ii):x2(ii));
+
+		% Welp this is a mess....
+		% Should sort instead in x and y coordinates and then determine array setup
+		% Also the order changes if the circles are not exactly 6...
+		if ii == 1 | ii == 6
+			position = ii;
+		elseif ii == 2
+			position = 4;
+		elseif ii == 3
+			position = 2;
+		elseif ii == 4
+			position = 5;
+		elseif ii == 5
+			position = 3;
+		end
+		% Welp...end of the mess
+
+		%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+		% First record baseline value
+		BaseLineROI(ColorFilter, position) = mean2(cropped);
+
+		% Hide bubbles with outside of STD
+		MeanTrans = mean2(cropped);
+		STDTrans = std2(cropped);
+		LowerLimit = MeanTrans*0.7;
+		UpperLimit = MeanTrans*1.2;
+		% cropped(cropped<LowerLimit) = nan;
+		% Plot before changing values to nan
+		subplot(2, 3, position)
+		imshow(cropped)
+		if (position > 3)
+			cropped(cropped < LowerLimit) = 0;
+			% Output an image to show areas that were analyzed for ROI
+			Analysis = cropped;
+			Analysis(~Analysis) = 255;
+			imwrite(Analysis, sprintf('imgs_out/Analysis%d.png', position));
+			% Report ROI
+			ROIout(ColorFilter, position) = nanmean2(cropped, 0);
+		else
+			cropped(cropped > UpperLimit) = 255;
+			% Output an image to show areas that were analyzed for ROI
+			Analysis = cropped;
+			imwrite(Analysis, sprintf('imgs_out/Analysis%d.png', position));
+			% Report ROI
+			ROIout(ColorFilter, position) = nanmean2(cropped, 255);
+		end
+	end
+
+	figure
+	for position = 1:6
+		SavedImage = imread(sprintf('imgs_out/Analysis%d.png', position ));
+		subplot(2, 3, position)
+		imshow(SavedImage)
+	end
+
+	figure
+	bar(BaseLineROI(ColorFilter, :), 'FaceColor', [100, 200, 100]./256) % green
+	title(sprintf('Transmission Baseline Values prior to Bubble Removal in %dst spectra', ColorFilter))
+	xlabel('Position (1-3 top) (4-6 bottom)')
+	ylabel('Transmission (256 is 100% transmission)')
+
+	% Create a stacked bar chart using the bar function
+	figure
+	% ROIDifference = BaseLineROI(ColorFilter, 4:6) - ROIout(ColorFilter, 4:6);
+	% ROIDifference = [ROIout(ColorFilter, 1:3) - BaseLineROI(ColorFilter, 1:3), ROIDifference]
+
+	ROIDifference = ROIout(ColorFilter, :) - BaseLineROI(ColorFilter, :)
+	bar( [ROIDifference', ROIout(ColorFilter, :)'], 'stack')
+	title(sprintf('Comparison of Bubble Removal in %dst spectra', ColorFilter))
+	xlabel('Position (1-3 top) (4-6 bottom)')
+	ylabel('Transmission (256 is 100% transmission)')
+
+	% % Adjust the axis limits
+	% axis([0 13 0 100000])
+	% set(gca, 'XTick', 1:12)
+
+	% % Add title and axis labels
+	% title('Childhood diseases by month')
+	% xlabel('Month')
+	% ylabel('Cases (in thousands)')
+
+	% Add a legend
+	legend('Adjustment', 'ROI')
+
+	figure
+	bar( ROIDifference, 'FaceColor', [100, 200, 100]./256) % green
+	title(sprintf('ROIDifference in %dst spectra', ColorFilter))
+	xlabel('All bottom row (post-melt)')
+	ylabel('Transmission (256 is 100% transmission)')
+
+	figure
+	bar(ROIout(ColorFilter, :), 'FaceColor', [100, 200, 100]./256) % green
+	title(sprintf('6 Transmission Values found in the %dst spectra', ColorFilter))
+	xlabel('Position (1-3 top) (4-6 bottom)')
+	ylabel('Transmission (256 is 100% transmission)')
+% end
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Calculate deviation across color filters
+% for jj = 1:NumRadii
+% 	BarData(jj) = mean( ROIout(:, jj) );
+% 	Deviation(jj) = std( ROIout(:, jj) );
+% end
+
+% % Plot Variation on top of mean
+% figure, hold all
+% bar(BarData, 'FaceColor', [173, 216, 230]./256) % light blue
+% errorbar( BarData, Deviation, 'kx' )
+% title('Comparison of transmission across spectra')
+% xlabel('Position (1-3 top) (4-6 bottom)')
+% ylabel('Mean Transmission (256 is 100% transmission)')
+
+% % Plot Variation only
+% figure, hold all
+% bar(Deviation, 'FaceColor', [0, 120, 256]./256) % dark blue
+% title('Breakout of Standard Deviation between Color Filtes')
+% xlabel('Position (1-3 top) (4-6 bottom)')
+% ylabel('Transmission (256 is 100% transmission)')
+
+
+% % Plot Optical Improvement
+% NumTestWells = round(length(PlotRadii)/2);
+% OpticalImprovement = zeros(NumTestWells, 1);
+% for kk = 1:NumTestWells
+% 	OpticalImprovement(kk) = ( BarData(kk+3) - BarData(kk) ) / BarData(kk+3);
+% end
+% figure, hold all
+% AVGOpticalImprovement = mean(OpticalImprovement);
+% xValues = linspace(0.5, (length(OpticalImprovement)+0.5), 2);
+% yValues = linspace(AVGOpticalImprovement, AVGOpticalImprovement, 2);
+% plot(xValues, yValues, 'kREPLACE_WITH_DASH_DASH')
+% bar(OpticalImprovement, 'FaceColor', [100, 200, 100]./256) % green
+% % Add labels and tick marks
+% MyLabels = {'Neg: Non-Functionalized', 'Neg: Functionalized', 'Positive Control'};
+% ax = gca;
+% ax.XTick = 1:(length(MyLabels));
+% ax.XTickLabel = MyLabels;
+% ax.XTickLabelRotation = 35;
+% title('Percent Optical Improvement')
+% xlabel('Control Group')
+% ylabel('% Change in Optical Improvement')
+% ylim([0,1])
+
+% % Add annotation of average:
+% % http://www.mathworks.com/help/matlab/ref/annotation.html
+% % [ x y w h], of figure mapped from [0,0] to [1,1]
+% % Note: this includes the margins around the graph
+% dim = [.15 .6 .3 .3];
+% str = sprintf('AVG: %.3g%%', AVGOpticalImprovement*100);
+% annotation('textbox',dim,'String',str,'FitBoxToText','on');
+
+##### SOURCE END #####
+--></body></html>
