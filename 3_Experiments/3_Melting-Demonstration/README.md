@@ -1,6 +1,6 @@
 # Melting Tests (Proof of Concept)
 
-Both of the melting tests showed that possibility of this approach to optical improvement. All videos are hosted on [Dropbox](https://www.dropbox.com/sh/ke1u6qmqc53jnuz/AAD-haMxS_5xeuQjK45n7hJ0a?dl=0) and on the Mantis post under `3_Melting-Demonstration`.
+Both of the melting tests showed that possibility of this approach to optical improvement.
 
 ## Bulk Demonstration
 
@@ -26,4 +26,4 @@ The beads produced from the PMMA device were loaded as a bead bed. Notably the b
 
 <p align="center">The bead bed after melting step</p>
 
-See the complete video: `Melting.mov`
+See the complete video: `BeadBedMelt.mp4`

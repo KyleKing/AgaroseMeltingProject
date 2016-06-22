@@ -1,8 +1,8 @@
 # Chemical Activation
 
-I did a pretty wide literature review and settled on two approaches. The first was a formaldehyde sensor, which I liked the simplicity, but when heated the reaction progresses so it just blackens and any optical improvement is obscured. The second approach using a hydrazide was far more effective. I made a proof of concept demonstration using bulk beads (~1 mm diameter). All videos are hosted on [Dropbox](https://www.dropbox.com/sh/26z5iqn5fn9qsed/AAA62LBK2Unh6xyBEQ7XUGk5a?dl=0) and on the Mantis post under `6_Chemical-Activation`.
+I did a pretty wide literature review and settled on two approaches. The first was a formaldehyde sensor, which I liked the simplicity, but when heated the reaction progresses so it just blackens and any optical improvement is obscured. The second approach using a hydrazide was far more effective. I made a proof of concept demonstration using bulk beads (~1 mm diameter).
 
-## Agarose Formaldehyde Sensor
+## Agarose Formaldehyde Sensor (Tollens Reagent)
 
 <p align="center">
   <img width="450" height=auto src="1_Formaledhyde-Sensor/concdependence.jpg">
@@ -22,7 +22,7 @@ I did a pretty wide literature review and settled on two approaches. The first w
 
 <p align="center">However, after melting the color became a burnt black. The heat had driven the reaction to completion</p>
 
-See the complete video: `formaldehydemeltvideo.m4v`
+See the complete video: `TollensReagentMeltTest.mp4`
 
 ## Agarose Direct Assay / Sandwich Immunoassay
 

@@ -1,6 +1,6 @@
 # Melter (single heat stage version of the TurtleBot)
 
-The melter is a single heat stage from the Turtle bot, so for the 3D printed parts, `see 6_CAD-Files`, for the electronics, see `5_Electronic-Diagrams`, and for the code and operation instructions, see `4_Software/MML-HeatStage`. All videos are hosted on [Dropbox](https://www.dropbox.com/sh/8xp4immeg3l4x7x/AABkZoZxHWYwvb_Gc5XLRQq4a?dl=0) and on the Mantis post under `9_Bead-Melting-Device`.
+The melter is a single heat stage from the Turtle bot, so for the 3D printed parts, `see 6_CAD-Files`, for the electronics, see `5_Electronic-Diagrams`, and for the code and operation instructions, see `4_Software/MML-HeatStage`. To see the issues described in packing the bead bed, see the video `FailedAgarosePacking.mp4`.
 
 <p align="center">
   <img width="450" height=auto src="imgs/Melter.jpg">
