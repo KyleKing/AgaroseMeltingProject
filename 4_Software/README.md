@@ -1,3 +1,3 @@
 # Software
 
-Included is the software that controls the Turtlebot and Melter (Single heater/cooler module) and a MATLAB shape identification program.
+Included is the software that controls the Turtlebot and Melter (Single heater/cooler module) - see the folder `MML-HeatStage` for considerably more information. Additionally, I was writing a few MATLAB scripts to automate determining ROI values and shape identification. They have lots of comments and notes, so they are worth improving and looking at it if you want to do something similar.

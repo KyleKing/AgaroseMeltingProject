@@ -2,19 +2,16 @@
 
 ## DIY Version:
 
-Included is a [Fritzing](http://fritzing.org/home/) (`DualHeatStage---Breadboard-Version.fzz`) file for a breaboard version of the dual heat stage electronics (MOSFETs and Thermocouples). The circuit and pin numbers were changed for the soldered version and are included as a picture.
+Included is a [Fritzing](http://fritzing.org/home/) (`DualHeatStage---Breadboard-Version.fzz`) file for a breaboard version of the dual heat stage electronics (MOSFETs and Thermocouples). The circuit and pin numbers were changed for the soldered version and are included below.
 
 <p align="center">
   <img width="450" height=auto src="DualHeatStage---Breadboard-Version.png">
-  <!-- <figcaption style="text-align: center;">Fritzing Screenshot</figcaption> -->
 </p>
-
 <p align="center">Fritzing Screenshot</p>
-
 
 ## Soldered Version
 
-Pin Layout [From Left to right (closest to USB towards the micro-SD card slot)]
+Pin Layout - from **Left** (closest to USB ports) to **Right** (closest to microSD slot)
 
 - MOSFET Pins:
     + Left: 21
@@ -33,8 +30,6 @@ Pin Layout [From Left to right (closest to USB towards the micro-SD card slot)]
         * DO pin: 18
         * CS pin: 17
         * CLK pin: 4
-
-The pin numbering is already part of the [MML-HeatStage code](https://github.com/KyleKing/MML-HeatStage), but it is repeated here for reference.
 
 <p align="center">
   <img width="450" height=auto src="imgs/board_MOSFET.jpg">
