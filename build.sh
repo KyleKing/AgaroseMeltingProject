@@ -23,9 +23,9 @@ function foo ()
 for d in */; do
   if [ "$EXP" == "$d" ]; then
     cd $EXP
-    for f in */ ; do
+    for i in */ ; do
     	# Clever char removal trick: http://unix.stackexchange.com/a/144308
-    	foo "../dist/${EXP%?}-${f%?}.zip" $f
+    	foo "../dist/${EXP%?}-${f%?}.zip" $i
     done
     cd ..
     tput setaf 5; echo "Left $EXP"
@@ -37,4 +37,10 @@ for d in */; do
 done
 
 # Last few files
+echo ""
+tput setaf 4; echo "Moving the last files:"
+for f in *.md; do
+  cp "$f" "dist/$f"
+  tput setaf 6; echo "Copied $f"
+done
 
