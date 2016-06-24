@@ -1,3 +1,4 @@
 .DS_Store
 passwords.md
 dist/
+node_modules/
