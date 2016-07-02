@@ -72,6 +72,11 @@ Collecting all of the design improvements and modifications, i assembled a final
 <p align="center">The final setup with the soldered electronic controls and compact setup</p>
 
 <p align="center">
+  <img width="300" height=auto src="imgs/3_automated/BoltsLocation.jpg">
+</p>
+<p align="center">The bolts used are 3/16 - 24 and each drawer of the nuts, washer, and two different length bolts are labeled with masking tape</p>
+
+<p align="center">
   <img width="450" height=auto src="imgs/3_automated/candid_photo.jpg">
 </p>
 <p align="center">A quick candid photo of the device in use</p>

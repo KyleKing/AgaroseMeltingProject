@@ -11,7 +11,7 @@ Included is a [Fritzing](http://fritzing.org/home/) (`DualHeatStage---Breadboard
 
 ## Soldered Version
 
-Pin Layout - from **Left** (closest to USB ports) to **Right** (closest to microSD slot)
+Pin Layout - from **Left** (closest to USB ports) to **Right** (closest to microSD slot). To switch between heating and cooling, reverse the leads or flip the tile. For my setup, I kept the bar code side face up.
 
 - MOSFET Pins:
     + Left: 21

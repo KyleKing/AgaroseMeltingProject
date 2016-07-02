@@ -3,16 +3,19 @@
 <p align="center">
   <img width="450" height=auto src="_DualHeatStage.png">
 </p>
-
 <p align="center">Complete Dual Heat Stage (Turtlebot)</p>
 
 <p align="center">
   <img width="450" height=auto src="_Melter.png">
 </p>
-
 <p align="center">Single Cooling/Heating Stage (Melter)</p>
 
-## Heatsink Adaptor
+<p align="center">
+  <img width="300" height=auto src="BoltsLocation.jpg">
+</p>
+<p align="center">The bolts used are 3/16 - 24 and each drawer of the nuts, washer, and two different length bolts are labeled with masking tape</p>
+
+## Heatsink Adapter
 
 The Turtlebot was designed to be modular. The core component is the heatsink adapter, which has cutouts for the fan wires and bolt locations that allow for finer adjustment. When I left there were a handful printed around lab, so you shouldn't have to print anymore, but if you do there is an included .stl file ready to print.
 
